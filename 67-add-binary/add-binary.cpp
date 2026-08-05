@@ -6,7 +6,7 @@ public:
 
         while (i >= 0 || j >= 0 || carry) {
             int sum = carry;
-            if (i >= 0) sum += a[i--] - '0';
+            if (i >= 0) sum += a[i--] - '0'; // ascii of 1 = 49, 0 = 48, hence 1 that represents the bit
             if (j >= 0) sum += b[j--] - '0';
 
             
