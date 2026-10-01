@@ -9,32 +9,39 @@ public:
 
         while(low <= high) {
 
-            int pivot = nums[high];
+            int pivot = nums[low + (high - low) / 2];
+
             int i = low;
+            int j = high;
 
-            for(int j = low; j < high; j++) {
+            while(i <= j) {
 
-                if(nums[j] < pivot) {
+                while(nums[i] < pivot) {
+                    i++;
+                }
+
+                while(nums[j] > pivot) {
+                    j--;
+                }
+
+                if(i <= j) {
                     int temp = nums[i];
                     nums[i] = nums[j];
                     nums[j] = temp;
 
                     i++;
+                    j--;
                 }
             }
 
-            int temp = nums[i];
-            nums[i] = nums[high];
-            nums[high] = temp;
-
-            if(i == target) {
-                return nums[i];
+            if(target <= j) {
+                high = j;
             }
-            else if(i < target) {
-                low = i + 1;
+            else if(target >= i) {
+                low = i;
             }
             else {
-                high = i - 1;
+                return nums[target];
             }
         }
 
